@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" content="Тест Кеттелла 187 вопросов. Генезис"> 
+<meta name="viewport" content="width=device-width">
+<title>Тест Кеттелла 187 вопросов. Генезис</title>
+<link rel="StyleSheet" href="img/psy012.css" type="text/css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<script src="psy008.js"></script>
+<!--CLIO-->
+<meta name="verify-admitad" content="dfa51501f5" />
+</head>
+<body>
+<script>qpgm='run';</script>
+
+<div id="pageBody" class="page_body">
+<header id="hDr">
+ <div class="header_logo">
+  
+  
+ </div>
+
+</header>
+
+<main id="pageContent" class="page_content">
+<h1 id="hDt">Тест Кеттелла</h1>
+  <div id="testRule"><div class="lntitle"><div class="lntitle_line"> </div><div class="lntitle_text">Инструкция</div><div class="lntitle_line"> </div></div><div class="test_instruction"><p>Отвечая на каждый вопрос, вы сможете выбрать один из трех предлагаемых ответов – 
+тот, который в наибольшей степени соответствует вашим взглядам, вашему мнению о себе. 
+</p>
+<p>Старайтесь не тратить много времени на обдумывание. 
+Давайте первый ответ, который придет вам в голову. 
+</p>
+<p>Старайтесь не увлекаться промежуточными, неопределенными ответами, 
+за исключением случаев, когда вы действительно не можете выбрать ни один из крайних вариантов.
+</p>
+<p>Старайтесь отвечать как можно искренней. 
+Не надо стараться произвести хорошее впечатление своми ответами, они должны соответствовать действительности.
+</p>
+<p>Некоторые вопросы могут показаться слишком личными, – помните, 
+что ответы на каждый отдельный вопрос нигде не сохраняются, и никто (даже вы сами)
+не сможет их увидеть по окончании теста.
+</p>
+<p>Опросник содержит несколько логических вопросов, в которых вы должны выбрать
+единственный правильный ответ.
+</p>
+</div>
+<div class="stdSelectors">
+
+<div class="stdSelector" id="stdSexSelector">
+<div class="stdSelAnswer">
+<div id="stdSexT1">Ваш пол:&nbsp;</div>
+<div id="stdSexT2"></div>
+<div id="stdSexValue"></div>
+</div>
+<div id="stdSexCalc">
+<div id="stdSexCalcM" class="stdSexCalcBtn stdSexCalcM" onclick="stdSexCalcClick('M');">мужчина</div>
+<div id="stdSexCalcF" class="stdSexCalcBtn stdSexCalcF" onclick="stdSexCalcClick('F');">женщина</div>
+</div></div>
+
+
+<div class="stdSelector" id="stdAgeSelector">
+<div class="stdSelAnswer">
+<div id="stdAgeT1">Ваш возраст:&nbsp;</div>
+<div id="stdAgeValue"></div>
+<div id="stdAgeT2"></div>
+</div>
+<div class="stdAgeCalc">
+<div onclick="stdAgeCalcClick(1);">1</div>
+<div onclick="stdAgeCalcClick(2);">2</div>
+<div onclick="stdAgeCalcClick(3);">3</div>
+<div onclick="stdAgeCalcClick(0);">0</div>
+<div onclick="stdAgeCalcClick(4);">4</div>
+<div onclick="stdAgeCalcClick(5);">5</div>
+<div onclick="stdAgeCalcClick(6);">6</div>
+<div style="visibility: hidden;">&nbsp;</div>
+<div onclick="stdAgeCalcClick(7);">7</div>
+<div onclick="stdAgeCalcClick(8);">8</div>
+<div onclick="stdAgeCalcClick(9);">9</div>
+<div onclick="stdAgeCalcClick('C');">C</div>
+</div></div>
+
+</div>
+<div class="stdRun">
+<form class="stdRun" id="frmRun" action=""> 
+<input type="button" class="stdRunButton" disabled="disabled"
+ id="frmRunButton"
+ value=" НАЧАТЬ ТЕСТИРОВАНИЕ "
+ onclick="testBegin(); this.blur(); return false;">
+</form>
+<div id="stdRunErr" class="stdRunErr">&nbsp;</div>
+</div></div>
+<script>
+function stdChecker ()
+{
+  var err = ''; 
+  if (document.getElementById("stdSexValue").innerHTML == '') {
+    err = 'укажите ваш пол'; }
+  if (document.getElementById("stdAgeValue").innerHTML == '' ||
+      document.getElementById("stdAgeValue").innerHTML < 16 ||                                                           
+      document.getElementById("stdAgeValue").innerHTML > 99) {
+    err = err + (err == '' ? 'укажите ваш' : ' и') + ' возраст';
+    if (document.getElementById("stdAgeValue").innerHTML != '') {
+      err = err + ' (от 16 лет)'; } }
+
+  document.getElementById("stdRunErr").innerHTML = '&nbsp' + err;
+  document.getElementById("frmRunButton").disabled = (err == '' ? false : true); 
+  document.getElementById("frmRunButton").className = (err == '' ? 'stdRunButton' : 'stdRunButton stdRunButtonDisabled'); 
+}
+
+function stdAgeCalcClick (val) 
+{
+  var now = document.getElementById("stdAgeValue").innerHTML;
+  if (val == 'C' || (val == 0 && now.length != 1)) { 
+    now = "";
+  } else if (val >= "0" && val <= "9") {
+    if (now.length < 2) { now = "" + now + val; } else { now = val; }
+  }
+  document.getElementById("stdAgeValue").innerHTML = now;
+  if (now == "") {
+    document.getElementById("stdAgeT2").innerHTML = ""; }
+  else if (now % 10 == 1 && now != 11) {
+    document.getElementById("stdAgeT2").innerHTML = "&nbsp;год"; }
+  else if (now % 10 > 1 && now % 10 < 5 && (now < 10 || now > 20)) {
+    document.getElementById("stdAgeT2").innerHTML = "&nbsp;года"; }
+  else {
+    document.getElementById("stdAgeT2").innerHTML = "&nbsp;лет"; }
+  stdChecker();
+}
+
+
+function stdSexCalcClick (val) 
+{
+  document.getElementById("stdSexValue").innerHTML = val;
+  document.getElementById("stdSexT2").innerHTML =
+    document.getElementById("stdSexCalc"+val).innerHTML;
+  document.getElementById("stdSexCalc"+val).innerHTML;
+  document.getElementById("stdSexCalcM").className = val == 'M' ? "stdSexCalcBtn stdSexCalcM" : "stdSexCalcBtn";
+  document.getElementById("stdSexCalcF").className = val == 'F' ? "stdSexCalcBtn stdSexCalcF" : "stdSexCalcBtn";
+  stdChecker();
+}
+
+stdChecker();
+</script>
+
+<script>
+function testBegin()
+{
+  qvtest = 'cattell';
+  qvsubtest = '16pfA' + document.getElementById("stdSexValue").innerHTML;
+  qtlSetCookie('qsex', document.getElementById("stdSexValue").innerHTML);
+  qtlSetCookie('qage', document.getElementById("stdAgeValue").innerHTML);
+  qtlBegin(qvtest, qvsubtest);
+}
+</script>
+
+</main>
+
+
+</div></body></html>
